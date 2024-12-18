@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            min-height: 90vh;
+            background:url('Yuva Sankalpam Logo.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .success-container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .success-container img {
+            max-width: 80px;
+            margin-bottom: 20px;
+        }
+        .success-container h1 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        .success-container p {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .success-container a {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .success-container a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <img src="Yuva Sankalpam Logo.jpg" alt="Yuva Sankalpam Logo">
+        <h1>Application Submitted Successfully!</h1>
+        <p>Thank you for your application. We will review your details and get back to you soon.</p>
+
+        <!-- Display Application Data -->
+        <h2>Application Details:</h2>
+        <p><strong>Email:</strong> <span id="display-email"></span></p>
+        <p><strong>Full Name:</strong> <span id="display-name"></span></p>
+        <p><strong>Phone Number:</strong> <span id="display-phone"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="display-dob"></span></p>
+        <p><strong>Address:</strong> <span id="display-address"></span></p>
+        <p><strong>Education Level:</strong> <span id="display-education"></span></p>
+        <p><strong>Gender:</strong> <span id="display-gender"></span></p>
+        <p><strong>Resume:</strong> <span id="display-resume"></span></p>
+
+        <a href="index.html">Go Back to Home Page</a>
+    </div>
+
+    <script>
+        // Retrieve user data from localStorage
+        // const userData = JSON.parse(localStorage.getItem("userData"));
+        const applicationData = JSON.parse(localStorage.getItem("applicationData"));
+
+        // Display the stored email from registration data
+        // const loggedInEmail = userData ? userData.email : "N/A";
+        // document.getElementById("display-email").innerText = loggedInEmail;
+
+        // Display application form data
+        if (applicationData) {
+            document.getElementById("display-name").innerText = applicationData.name || "N/A";
+            document.getElementById("display-email").innerText = applicationData.email || "N/A";
+            document.getElementById("display-phone").innerText = applicationData.phone || "N/A";
+            document.getElementById("display-dob").innerText = applicationData.dob || "N/A";
+            document.getElementById("display-address").innerText = applicationData.address || "N/A";
+            document.getElementById("display-education").innerText = applicationData.education || "N/A";
+            document.getElementById("display-gender").innerText = applicationData.gender || "N/A";
+            document.getElementById("display-resume").innerText = applicationData.resume || "N/A";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            min-height: 90vh;
+            background: url('Portalbgg.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .form-container img {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+        .form-container h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-container label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-container input,
+        .form-container textarea,
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .form-container input[type="file"] {
+            padding: 5px;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        .gender-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .gender-options label {
+            margin-right: 10px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <img src="Yuva Sankalpam Logo.jpg" alt="Yuva Sankalpam Logo">
+        <h1>Application Form</h1>
+        <form id="applicationForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address"  required>
+
+            
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="gender">Gender</label>
+            <div class="gender-options">
+                <label><input type="radio" name="gender" value="Male" required>Male</label>
+                <label><input type="radio" name="gender" value="Female" required>Female</label>
+            </div>
+
+            <label for="resume">Upload Resume</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+
+            <label for="address">Address</label>
+            <textarea id="address" name="address" placeholder="Enter your address" rows="3" required></textarea>
+
+            <label for="education">Education Level</label>
+            <select id="education" name="education" required>
+                <option value="">--Select--</option>
+                <option value="high-school">High School</option>
+                <option value="bachelor">Bachelor's Degree</option>
+                <option value="master">Master's Degree</option>
+                <option value="other">Other</option>
+            </select>
+
+            <button type="button" onclick="submitApplication()">Submit Application</button>
+        </form>
+    </div>
+
+    <script>
+        // Populate email field with logged-in email
+        // const loggedInEmail = localStorage.getItem("loggedInEmail");
+        // if (loggedInEmail) {
+        //     document.getElementById("email").value = loggedInEmail;
+        // }
+        // Retrieve the user data from localStorage and set the email in the form
+    //   const userData = JSON.parse(localStorage.getItem("userData"));
+    //   const loggedInEmail = userData ? userData.email : "";
+    //   document.getElementById("email").value = loggedInEmail;
+
+        function submitApplication() {
+            const formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                dob: document.getElementById("dob").value,
+                gender: document.querySelector('input[name="gender"]:checked')?.value,
+                resume: document.getElementById("resume").files[0]?.name || "",
+                address: document.getElementById("address").value,
+                education: document.getElementById("education").value,
+            };
+
+            // Save form data to localStorage for the next page
+            localStorage.setItem("applicationData", JSON.stringify(formData));
+
+            alert("Your application has been submitted successfully!");
+            window.location.href = "summary.html"; // Redirect to the summary page
+        }
+    </script>
+</body>
+</html>

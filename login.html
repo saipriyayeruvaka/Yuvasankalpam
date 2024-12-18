@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - YUVASANKALPAM</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+      body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    nav {
+      background-color: #0073e6;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="register.html">Register</a>
+    <a href="login.html">Login</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <div class="container">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+      </div>
+      <div class="form-group">
+        <label for="captcha">Captcha: <span id="captchaDisplay"></span></label>
+        <input type="text" id="captcha" placeholder="Enter the captcha" required>
+        <button type="button" id="regenerateCaptcha">Regenerate Captcha</button>
+        <span id="captchaDisplay" style="color: #ff6347;"></span>
+
+      </div>
+      <button type="submit">Login</button>
+      <p>If you haven't registered, <a href="register.html">register here</a>.</p>
+    </form>
+  </div>
+
+  <script>
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Retrieve users from localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Validate credentials
+    const user = users.find(user => user.email === email && user.password === password);
+
+    if (user) {
+      alert('Login successful!');
+      // Redirect to a dashboard or homepage
+      window.location.href = 'application.html';
+    } else {
+      alert('Invalid email or password.');
+    }
+  });
+    
+    function generateCaptcha() {
+      const captcha = Math.random().toString(36).substring(2, 8);
+      document.getElementById('captchaDisplay').textContent = captcha;
+    }
+
+    document.getElementById('regenerateCaptcha').addEventListener('click', generateCaptcha);
+
+   
+
+    generateCaptcha();
+
+
+  </script>
+</body>
+</html>

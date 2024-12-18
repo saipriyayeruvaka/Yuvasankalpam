@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - YUVASANKALPAM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+      /* Navigation Bar */
+      nav {
+      background-color: #0073e6;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+
+    .error-msg {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .preview-container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .preview-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .preview-container .preview-item {
+      margin-bottom: 10px;
+    }
+
+    .preview-container .preview-item span {
+      font-weight: bold;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: green;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .toggle-password i {
+      color: #555;
+    }
+    
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="register.html">Register</a>
+    <a href="login.html">Login</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <div id="form-container" class="container">
+    <h1>Register</h1>
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" placeholder="Enter your first name" required>
+        <div class="error-msg" id="error-first-name">Only alphabets are allowed.</div>
+      </div>
+      <div class="form-group">
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" placeholder="Enter your last name" required>
+        <div class="error-msg" id="error-last-name">Only alphabets are allowed.</div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+        <div class="error-msg" id="error-phone">Enter a valid 10-digit phone number.</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <div class="error-msg" id="error-email">Enter a valid email address.</div>
+      </div>
+      <div class="form-group" style="position: relative;">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="button" class="toggle-password" onclick="togglePassword('password')">
+          <i class="fas fa-eye"></i>
+        </button>
+        <div class="error-msg" id="error-password">Password must be at least 8 characters with 1 special character.</div>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+        <div class="error-msg" id="error-confirm-password">Passwords do not match.</div>
+      </div>
+      <!-- <div class="form-group">
+        <label for="resume">Upload Resume:</label>
+        <input type="file" id="resume" accept=".pdf,.doc,.docx" required>
+      </div> -->
+
+      <div class="form-group">
+        <label for="about-me">About Me:</label>
+        <textarea id="about-me" placeholder="Write about yourself (max 200 characters)" maxlength="200" rows="4" style="width: 100%;"></textarea>
+        <div id="about-me-count">0/200</div>
+      </div>
+      
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <div id="preview-container" class="preview-container" style="display: none;">
+    <h2>Preview Details</h2>
+    <div class="preview-item"><span>First Name:</span> <span id="preview-first-name"></span></div>
+    <div class="preview-item"><span>Last Name:</span> <span id="preview-last-name"></span></div>
+    <div class="preview-item"><span>Phone Number:</span> <span id="preview-phone"></span></div>
+    <div class="preview-item"><span>Email:</span> <span id="preview-email"></span></div>
+    <!-- <div class="preview-item"><span>Resume:</span> <span id="preview-resume"></span></div> -->
+    <div class="preview-item"><span>About:</span> <span id="preview-about-me"></span></div>
+    <button id="submitButton">Submit</button>
+  </div>
+
+  <script>
+    function togglePassword(fieldId) {
+      const passwordField = document.getElementById(fieldId);
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+      } else {
+        passwordField.type = "password";
+      }
+    }
+
+    document.getElementById('registerForm').addEventListener('input', (e) => {
+      const target = e.target;
+      const id = target.id;
+
+      if (id === 'first-name' || id === 'last-name') {
+        const errorId = id === 'first-name' ? 'error-first-name' : 'error-last-name';
+        const regex = /^[A-Za-z]*$/;
+        document.getElementById(errorId).style.display = regex.test(target.value) ? 'none' : 'block';
+      }
+
+      if (id === 'phone') {
+        const errorPhone = document.getElementById('error-phone');
+        errorPhone.style.display = /^\d{10}$/.test(target.value) ? 'none' : 'block';
+      }
+
+      if (id === 'email') {
+        const errorEmail = document.getElementById('error-email');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        errorEmail.style.display = emailRegex.test(target.value) ? 'none' : 'block';
+      }
+
+      if (id === 'password') {
+        const errorPassword = document.getElementById('error-password');
+        const passwordRegex = /^(?=.[!@#$%^&])[A-Za-z\d!@#$%^&*]{8,}$/;
+        errorPassword.style.display = passwordRegex.test(target.value) ? 'none' : 'block';
+      }
+
+      if (id === 'confirm-password') {
+        const errorConfirmPassword = document.getElementById('error-confirm-password');
+        const password = document.getElementById('password').value;
+        errorConfirmPassword.style.display = target.value === password ? 'none' : 'block';
+      }
+    });
+
+    document.getElementById('about-me').addEventListener('input', function() {
+  const aboutMeCount = document.getElementById('about-me-count');
+  const charCount = this.value.length;
+  aboutMeCount.textContent ='${charCount}/200';
+});
+
+
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Get existing users from localStorage or initialize an empty array
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Check if the email already exists
+    if (users.some(user => user.email === email)) {
+      alert('Email is already registered.');
+      return;
+    }
+
+    // Add the new user
+    users.push({ email, password });
+    localStorage.setItem('users', JSON.stringify(users));
+
+      // Hide form and show preview
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('preview-container').style.display = 'block';
+
+      // Fill preview details
+      document.getElementById('preview-first-name').textContent = document.getElementById('first-name').value;
+      document.getElementById('preview-last-name').textContent = document.getElementById('last-name').value;
+      document.getElementById('preview-phone').textContent = document.getElementById('phone').value;
+      document.getElementById('preview-email').textContent = document.getElementById('email').value;
+      // const resumeFile = document.getElementById('resume').files[0];
+      // document.getElementById('preview-resume').textContent = resumeFile ? resumeFile.name : '';
+      document.getElementById('preview-about-me').textContent = document.getElementById('about-me').value;
+
+    });
+
+    document.getElementById('submitButton').addEventListener('click', function() {
+      alert('Registration Successful!');
+    });
+  </script>
+</body>
+</html>
